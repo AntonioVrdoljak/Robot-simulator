@@ -16,6 +16,16 @@ class RobotSimulator:
     def report(self):
         print(f"Output: {self.x},{self.y},{self.direction}")
 
+    def move(self):
+        if self.direction == 'NORTH':
+            self.y = min(4, self.y + 1)
+        elif self.direction == 'SOUTH':
+            self.y = max(0, self.y - 1)
+        elif self.direction == 'EAST':
+            self.x = min(4, self.x + 1)
+        elif self.direction == 'WEST':
+            self.x = max(0, self.x - 1)
+
 
 def main():
     command_place = 'PLACE'
@@ -42,6 +52,8 @@ def main():
             elif robot.placed:
                 if command == 'REPORT':
                     robot.report()
+                elif command == 'MOVE':
+                    robot.move()
 
 
 if __name__ == "__main__":
