@@ -7,7 +7,7 @@ class RobotSimulator:
         self.placed = False
 
     def place(self, x, y, direction):
-        if direction.upper() in self.valid_directions:
+        if self.is_valid_position(x, y) and direction.upper() in self.valid_directions:
             self.x = x
             self.y = y
             self.direction = direction.upper()
@@ -25,6 +25,10 @@ class RobotSimulator:
             self.x = min(4, self.x + 1)
         elif self.direction == 'WEST':
             self.x = max(0, self.x - 1)
+
+    @staticmethod
+    def is_valid_position(x, y):
+        return 0 <= x <= 4 and 0 <= y <= 4
 
 
 def main():
