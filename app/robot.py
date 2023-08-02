@@ -1,7 +1,15 @@
-def main():
-    # Your application logic goes here
-    print("Hello, World!")
+class RobotSimulator:
+    def __init__(self):
+        self.x = None
+        self.y = None
+        self.direction = None
+        self.valid_directions = ['NORTH', 'EAST', 'SOUTH', 'WEST']
+        self.placed = False
 
-# Check if this file is the entry point of the program
+
+def main():
+    robot = RobotSimulator()
+
+
 if __name__ == "__main__":
     main()
