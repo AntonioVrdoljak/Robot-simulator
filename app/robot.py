@@ -13,6 +13,9 @@ class RobotSimulator:
             self.direction = direction.upper()
             self.placed = True
 
+    def report(self):
+        print(f"Output: {self.x},{self.y},{self.direction}")
+
 
 def main():
     command_place = 'PLACE'
@@ -36,6 +39,9 @@ def main():
                 _, args = command.split()
                 x, y, direction = args.split(',')
                 robot.place(int(x), int(y), direction)
+            elif robot.placed:
+                if command == 'REPORT':
+                    robot.report()
 
 
 if __name__ == "__main__":
