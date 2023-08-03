@@ -18,6 +18,18 @@ class TestRobot(unittest.TestCase):
         robot.place(2, 3, 'INVALID')  # Invalid direction
         self.assertFalse(robot.x is not None and robot.y is not None and robot.direction is not None)
 
+    def test_move_command(self):
+        robot = RobotSimulator()
+        robot.place(2, 2, 'NORTH')
+        robot.move()
+        self.assertEqual(robot.y, 3)
+        robot.left()
+        robot.move()
+        self.assertEqual(robot.x, 1)
+        robot.right()
+        robot.move()
+        self.assertEqual(robot.x, 1)
+
 
 if __name__ == '__main__':
     unittest.main()
