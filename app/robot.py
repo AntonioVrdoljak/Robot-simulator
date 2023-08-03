@@ -59,10 +59,16 @@ def main():
             elif command.startswith(command_place):
                 place_index = commands.index(command)
                 additional_place_command = commands[place_index + 1]
-                command = command + ' ' + additional_place_command
-                _, args = command.split()
-                x, y, direction = args.split(',')
-                robot.place(int(x), int(y), direction)
+                if len(additional_place_command.split(",")) == 3:
+                    command = command + ' ' + additional_place_command
+                    _, args = command.split()
+                    x, y, direction = args.split(',')
+                    if x and y and direction and x.isdigit() and y.isdigit() and type(direction) == str:
+                        robot.place(int(x), int(y), direction)
+                    else:
+                        print('Please, use the correct command format.')
+                else:
+                    print('Please, use the correct command format.')
             elif robot.placed:
                 if command == 'REPORT':
                     robot.report()
@@ -73,7 +79,7 @@ def main():
                 elif command == 'RIGHT':
                     robot.right()
             else:
-                print("Robot has not been placed yet. Please use the PLACE command to place the robot.")
+                print("Robot has not been placed yet. Please use the PLACE X,Y,F command to place the robot.")
 
 
 if __name__ == "__main__":
