@@ -1,9 +1,14 @@
 import unittest
+from app.robot import RobotSimulator
 
 
-class MyTestCase(unittest.TestCase):
-    def test_something(self):
-        self.assertEqual(True, False)  # add assertion here
+class TestRobot(unittest.TestCase):
+    def test_valid_place_command(self):
+        robot = RobotSimulator()
+        robot.place(2, 3, 'NORTH')
+        self.assertEqual(robot.x, 2)
+        self.assertEqual(robot.y, 3)
+        self.assertEqual(robot.direction, 'NORTH')
 
 
 if __name__ == '__main__':
