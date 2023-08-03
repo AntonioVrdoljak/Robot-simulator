@@ -40,6 +40,13 @@ class TestRobot(unittest.TestCase):
         robot.right()
         self.assertEqual(robot.direction, 'EAST')
 
+    def test_report_command(self):
+        robot = RobotSimulator()
+        robot.place(2, 2, 'NORTH')
+        with self.assertLogs() as log:
+            robot.report()
+        self.assertIn("INFO:root:Output: 2,2,NORTH", log.output[0])
+
 
 if __name__ == '__main__':
     unittest.main()
