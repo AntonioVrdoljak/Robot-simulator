@@ -26,6 +26,16 @@ class RobotSimulator:
         elif self.direction == 'WEST':
             self.x = max(0, self.x - 1)
 
+    def left(self):
+        current_index = self.valid_directions.index(self.direction)
+        new_index = (current_index - 1) % 4
+        self.direction = self.valid_directions[new_index]
+
+    def right(self):
+        current_index = self.valid_directions.index(self.direction)
+        new_index = (current_index + 1) % 4
+        self.direction = self.valid_directions[new_index]
+
     @staticmethod
     def is_valid_position(x, y):
         return 0 <= x <= 4 and 0 <= y <= 4
@@ -58,6 +68,10 @@ def main():
                     robot.report()
                 elif command == 'MOVE':
                     robot.move()
+                elif command == 'LEFT':
+                    robot.left()
+                elif command == 'RIGHT':
+                    robot.right()
 
 
 if __name__ == "__main__":
