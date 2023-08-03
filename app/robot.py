@@ -1,3 +1,5 @@
+import logging
+
 class RobotSimulator:
     def __init__(self):
         self.x = None
@@ -15,6 +17,7 @@ class RobotSimulator:
 
     def report(self):
         print(f"Output: {self.x},{self.y},{self.direction}")
+        logging.info(f"Output: {self.x},{self.y},{self.direction}")
 
     def move(self):
         if self.direction == 'NORTH':
