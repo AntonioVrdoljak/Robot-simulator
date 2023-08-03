@@ -52,11 +52,13 @@ def main():
             print("Incorrect input, please try again.")
             continue
 
+        show_msg = True
         for command in commands:
             if command == 'EXIT':
                 print("Exiting the robot simulator.")
                 return
             elif command.startswith(command_place):
+                show_msg = False
                 place_index = commands.index(command)
                 additional_place_command = commands[place_index + 1]
                 if len(additional_place_command.split(",")) == 3:
@@ -66,10 +68,11 @@ def main():
                     if x and y and direction and x.isdigit() and y.isdigit() and type(direction) == str:
                         robot.place(int(x), int(y), direction)
                     else:
-                        print('Please, use the correct command format.')
+                        print('Please, use the correct command format [PLACE X,Y,F].')
                 else:
                     print('Please, use the correct command format.')
             elif robot.placed:
+                show_msg = True
                 if command == 'REPORT':
                     robot.report()
                 elif command == 'MOVE':
@@ -79,7 +82,8 @@ def main():
                 elif command == 'RIGHT':
                     robot.right()
             else:
-                print("Robot has not been placed yet. Please use the PLACE X,Y,F command to place the robot.")
+                if show_msg:
+                    print(f"The {command} command before {command_place} did not affect the position of the robot.")
 
 
 if __name__ == "__main__":
