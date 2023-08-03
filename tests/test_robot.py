@@ -30,6 +30,16 @@ class TestRobot(unittest.TestCase):
         robot.move()
         self.assertEqual(robot.x, 1)
 
+    def test_left_right_commands(self):
+        robot = RobotSimulator()
+        robot.place(2, 2, 'NORTH')
+        robot.left()
+        self.assertEqual(robot.direction, 'WEST')
+        robot.right()
+        self.assertEqual(robot.direction, 'NORTH')
+        robot.right()
+        self.assertEqual(robot.direction, 'EAST')
+
 
 if __name__ == '__main__':
     unittest.main()
