@@ -72,6 +72,8 @@ def main():
                     robot.left()
                 elif command == 'RIGHT':
                     robot.right()
+            else:
+                print("Robot has not been placed yet. Please use the PLACE command to place the robot.")
 
 
 if __name__ == "__main__":
